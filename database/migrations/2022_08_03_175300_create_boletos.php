@@ -26,6 +26,7 @@ class CreateBoletos extends Migration
             $table->tinyInteger('concurso');
             $table->integer('serie');
             $table->string('hasher', 100);
+            $table->string('hasher2', 100);
             $table->string('hash', 200);
             $table->string('md5hash', 32);
             $table->json('numeros');

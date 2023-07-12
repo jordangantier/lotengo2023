@@ -46,11 +46,15 @@ class BoletoSeeder extends Seeder
             }
 
             // Crea los arrays de boletos.
-            $hasher = '';
+            $ordhasher = '';
+            $unordhasher = '';
             for ($n = 1; $n <= $qty_jugadas; $n++) {
 
                 // Selecciona los bolillos para la jugada.
                 $numeros[$n] = array_rand($boletos, 15);
+
+                // Guarda los números ordenados.
+                $ordhasher .= join($numeros[$n]);
 
                 // Baraja los números.
                 for ($x = 1; $x <= 5; $x++) {
@@ -58,14 +62,14 @@ class BoletoSeeder extends Seeder
                 }
 
                 // Genera el hasher con los números elegidos.
-                $hasher .= join($numeros[$n]);
+                $unordhasher .= join($numeros[$n]);
             }
 
             // Genera el json con todos los números.
             $array_numeros = json_encode($numeros);
 
             // Generación de Hash.
-            $hash = openssl_encrypt($hasher, $ciphering, $encryption_key, $iv_length, $encryption_iv);
+            $hash = openssl_encrypt($unordhasher, $ciphering, $encryption_key, $iv_length, $encryption_iv);
             $md5hash = strtoupper(md5($hash));
             //$decrypted = openssl_decrypt($hash, $ciphering, $encryption_key, 0, $encryption_iv);
 
@@ -73,7 +77,8 @@ class BoletoSeeder extends Seeder
                 'concurso' => $concurso,
                 'serie' => $i,
                 'hash' => $hash,
-                'hasher' => $hasher,
+                'hasher' => $unordhasher,
+                'hasher2' => $ordhasher,
                 'md5hash' => $md5hash,
                 'numeros' => $array_numeros,
             ]);
