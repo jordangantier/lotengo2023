@@ -15,6 +15,7 @@ class BoletoSeeder extends Seeder
         $qty_boletos = env('QTY_BOLETOS');
         $qty_jugadas = env('QTY_JUGADAS');
         $qty_series = env('QTY_SERIES');
+        $chars_boletos = strlen($qty_boletos);
 
         $modulo = $qty_boletos % $qty_series;
         $boletos_x_serie = ($qty_boletos - $modulo) / $qty_series;
@@ -72,10 +73,10 @@ class BoletoSeeder extends Seeder
             $hash = openssl_encrypt($unordhasher, $ciphering, $encryption_key, $iv_length, $encryption_iv);
             $md5hash = strtoupper(md5($hash));
             //$decrypted = openssl_decrypt($hash, $ciphering, $encryption_key, 0, $encryption_iv);
-
+            $z = str_pad($i, $chars_boletos, '0', STR_PAD_LEFT);
             Boleto::create([
                 'concurso' => $concurso,
-                'serie' => $i,
+                'serie' => $z,
                 'hash' => $hash,
                 'hasher' => $unordhasher,
                 'hasher2' => $ordhasher,

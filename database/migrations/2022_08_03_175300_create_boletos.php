@@ -24,7 +24,7 @@ class CreateBoletos extends Migration
             $table->boolean('habilitado')
                 ->default(0);
             $table->tinyInteger('concurso');
-            $table->integer('serie');
+            $table->string('serie', strlen(env('QTY_BOLETOS')));
             $table->string('hasher', 100);
             $table->string('hasher2', 100);
             $table->string('hash', 200);
