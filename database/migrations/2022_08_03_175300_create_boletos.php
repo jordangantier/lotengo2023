@@ -29,12 +29,11 @@ class CreateBoletos extends Migration
             $table->string('hash', 200);
             $table->string('md5hash', 32);
             $table->json('numeros');
-            $table->tinyInteger('contador1')
-                ->default(15);
-            $table->tinyInteger('contador2')
-                ->default(15);
-            $table->tinyInteger('contador3')
-                ->default(15);
+            for ($i = 1; $i <= env('QTY_JUGADAS'); $i++) {
+                $name = 'contador' . $i;
+                $table->tinyInteger($name)
+                    ->default(15);
+            }
             $table->timestamps();
         });
     }

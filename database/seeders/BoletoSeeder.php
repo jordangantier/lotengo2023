@@ -10,14 +10,15 @@ class BoletoSeeder extends Seeder
 {
     public function run()
     {
-        $cantidad_numeros = 87;
-        $cantidad_boletos = 12000;
-        $cantidad_jugadas = 2;
-        $cantidad_series = 4;
+        //Variables de configuración del tipo de juego.
+        $qty_numeros = env('QTY_NUMEROS');
+        $qty_boletos = env('QTY_BOLETOS');
+        $qty_jugadas = env('QTY_JUGADAS');
+        $qty_series = env('QTY_SERIES');
 
-        $modulo = $cantidad_boletos % $cantidad_series;
-        $boletos_x_serie = ($cantidad_boletos - $modulo) / $cantidad_series;
-        $emitibles = $boletos_x_serie * $cantidad_series;
+        $modulo = $qty_boletos % $qty_series;
+        $boletos_x_serie = ($qty_boletos - $modulo) / $qty_series;
+        $emitibles = $boletos_x_serie * $qty_series;
 
         $ciphering = env('CIPHERING');
         $iv_length = openssl_cipher_iv_length($ciphering);
@@ -25,10 +26,10 @@ class BoletoSeeder extends Seeder
         $encryption_key = env('ENCRYPTION_KEY');
 
         //Genera el array de números sorteables.
-        $boletos = range(1, $cantidad_numeros);
+        $boletos = range(1, $qty_numeros);
 
         //Genera los boletos
-        for ($i = 1; $i <= $cantidad_boletos; $i++) {
+        for ($i = 1; $i <= $qty_boletos; $i++) {
 
             //Coloca los boletos en su determinado concurso.
             if ($i >= 1 && $i <= 3000) {
@@ -44,15 +45,18 @@ class BoletoSeeder extends Seeder
                 $concurso = 4;
             }
 
-            // Crea los tres arrays de boletos.
+            // Crea los arrays de boletos.
             $hasher = '';
-            for ($n = 1; $n <= $cantidad_jugadas; $n++) {
+            for ($n = 1; $n <= $qty_jugadas; $n++) {
+
                 // Selecciona los bolillos para la jugada.
                 $numeros[$n] = array_rand($boletos, 15);
+
                 // Baraja los números.
                 for ($x = 1; $x <= 5; $x++) {
                     shuffle($numeros[$n]);
                 }
+
                 // Genera el hasher con los números elegidos.
                 $hasher .= join($numeros[$n]);
             }
@@ -61,7 +65,6 @@ class BoletoSeeder extends Seeder
             $array_numeros = json_encode($numeros);
 
             // Generación de Hash.
-            //$hasher = join($numeros);
             $hash = openssl_encrypt($hasher, $ciphering, $encryption_key, $iv_length, $encryption_iv);
             $md5hash = strtoupper(md5($hash));
             //$decrypted = openssl_decrypt($hash, $ciphering, $encryption_key, 0, $encryption_iv);
