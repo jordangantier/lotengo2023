@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^lotengo.test$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.lotengo.test$
+RewriteCond %{REQUEST_URI} !project/public/
+RewriteRule (.*) /project/public/$1 [L]
