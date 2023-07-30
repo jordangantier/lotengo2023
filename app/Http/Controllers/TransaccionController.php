@@ -28,7 +28,7 @@ class TransaccionController extends Controller
             $participante['created_at'] = Carbon::now();
             $participante->save();
             $id_part = Participante::first('id')->where('ci_nit', '=', $request->ci_nit)->get();
-            dd($id_part);
+            //dd($id_part);
 
             //Guarda la transacción.
             $transaccion = new Transaccion();

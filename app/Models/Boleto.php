@@ -10,12 +10,15 @@ class Boleto extends Model
     use HasFactory;
 
     protected $fillable = [
-        'habiliado',
+        'habilitado',
         'concurso',
         'serie',
         'hasher',
+        'hasher2',
         'hash',
+        'md5hash',
         'numeros',
-        'contador',
+        'contador1',
+        'contador2',
     ];
 }
