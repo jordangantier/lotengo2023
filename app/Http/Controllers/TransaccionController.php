@@ -51,7 +51,7 @@ class TransaccionController extends Controller
                 $habilitar->update();
             }
         } else {
-            dd($request);
+            //dd($request);
             //Guarda la transacción.
             $transaccion = new Transaccion();
             $transaccion['id_user'] = $request['id_user'];
@@ -69,7 +69,7 @@ class TransaccionController extends Controller
             foreach ($array as $value) {
                 $habilitar = Boleto::find($value);
                 $habilitar->id_transaccion = $transaccion->id;
-                $habilitar->habilitado = 1;
+                $habilitar->habilitado = 0;
                 $habilitar->update();
             }
         }

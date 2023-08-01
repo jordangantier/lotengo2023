@@ -89,10 +89,10 @@ btnImprimir.addEventListener("click", () => {
 <td>${data[0].id_transaccion}</td>
 <td><strong>CARTONES HABILITADOS</strong></td>
 <td>${JSON.parse(data[0].habilitados)
-                .map((value) => {
-                    return value;
-                })
-                .join(", ")}</td>
+                    .map((value) => {
+                        return value;
+                    })
+                    .join(", ")}</td>
 </tr>
 <tr style="height: 100px;">
 <td><strong>FECHA</strong></td>
@@ -350,9 +350,8 @@ function calcularMontoFaltanteParaMasCartones() {
     }
     let cartones = calcularCartones(sumarFacturas()) + 1;
 
-    return `<div class="bg-blue-500 text-stone-50 text-xs px-3 py-2 font-medium mt-4"><p> Te falta Bs.- ${montoFaltante} para poder canjear ${
-        cartones === 1 ? `${cartones} cartón` : `${cartones} cartones`
-    }</p></div>`;
+    return `<div class="bg-blue-500 text-stone-50 text-xs px-3 py-2 font-medium mt-4"><p> Te falta Bs.- ${montoFaltante} para poder canjear ${cartones === 1 ? `${cartones} cartón` : `${cartones} cartones`
+        }</p></div>`;
 }
 
 function eliminarSerie(serie) {
@@ -461,7 +460,7 @@ function guardarCliente() {
             habilitados: JSON.stringify(textToNumber),
         }),
     };
-
+    console.log(options);
     fetch("/api/insertardata", options)
         .then((response) => response.json())
         .then((res) => alert(res.msg))
@@ -505,9 +504,8 @@ function aviso(registro = false) {
 }
 
 function avisoFinal() {
-    mensajeFinal.innerHTML = `<div class="bg-green-500 text-stone-50 px-6 py-3"><p>El cliente ${
-        nombre.value
-    } registró correctamente ${calcularCartones(
-        sumarFacturas()
-    )} cartones para el primer sorteo en Fecha 15/09/2022</p></div>`;
+    mensajeFinal.innerHTML = `<div class="bg-green-500 text-stone-50 px-6 py-3"><p>El cliente ${nombre.value
+        } registró correctamente ${calcularCartones(
+            sumarFacturas()
+        )} cartones para el primer sorteo en Fecha 15/09/2022</p></div>`;
 }
