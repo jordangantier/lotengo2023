@@ -16,9 +16,10 @@ class TransaccionController extends Controller
 {
     public function store(Request $request)
     {
+        // Verifica si el participante es nuevo o si ya está registrado en la DB.
         if ($request['id_participante'] == "" || $request['id_participante'] == null) {
-
-            //Guarda un nuevo participante.
+            // Si el participante es nuevo -->
+            // Guarda un nuevo participante.
             $participante = new Participante();
             $participante['nombre'] = $request->nombre;
             $participante['ci_nit'] = $request->ci_nit;
@@ -28,9 +29,8 @@ class TransaccionController extends Controller
             $participante['created_at'] = Carbon::now();
             $participante->save();
             $id_part = Participante::first('id')->where('ci_nit', '=', $request->ci_nit)->get();
-            //dd($id_part);
 
-            //Guarda la transacción.
+            // Guarda la transacción.
             $transaccion = new Transaccion();
             $transaccion['id_user'] = $request['id_user'];
             $transaccion['id_participante'] = $id_part[0]->id;
@@ -42,16 +42,16 @@ class TransaccionController extends Controller
             $transaccion->save();
             $transaccion->id;
 
-            //Habilita los boletos en la DB.
+            // Habilita los boletos en la DB.
             $array = json_decode($transaccion['habilitados']);
             foreach ($array as $value) {
                 $habilitar = Boleto::find($value);
                 $habilitar->id_transaccion = $transaccion->id;
-                $habilitar->habilitado = 1;
+                $habilitar->habilitado = 0;
                 $habilitar->update();
             }
         } else {
-            //dd($request);
+            // Si el participante ya está registrado en la DB. -->
             //Guarda la transacción.
             $transaccion = new Transaccion();
             $transaccion['id_user'] = $request['id_user'];
