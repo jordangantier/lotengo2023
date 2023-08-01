@@ -507,5 +507,5 @@ function avisoFinal() {
     mensajeFinal.innerHTML = `<div class="bg-green-500 text-stone-50 px-6 py-3"><p>El cliente ${nombre.value
         } registró correctamente ${calcularCartones(
             sumarFacturas()
-        )} cartones para el primer sorteo en Fecha 15/09/2022</p></div>`;
+        )} cartones para el sorteo del 17 de agosto de 2023.</p></div>`;
 }
