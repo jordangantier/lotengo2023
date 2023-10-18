@@ -10,11 +10,11 @@ class JsonGeneratorController extends Controller
 {
     public function index()
     {
-        $json = Boleto::select('boletos.id', 'nombre', 'ci_nit', 'telefono', 'email', 'concurso', 'contador1', 'contador2', 'contador3', 'numeros')
+        $json = Boleto::select('boletos.id', 'nombre', 'ci_nit', 'telefono', 'email', 'concurso', 'contador1', 'contador2', 'numeros')
             ->join('transaccions', 'transaccions.id', '=', 'boletos.id_transaccion')
             ->join('participantes', 'participantes.id', '=', 'transaccions.id_participante')
-            ->where('boletos.habilitado', 1)
-            ->where('concurso', 4)
+            ->where('boletos.habilitado', 0)
+            ->where('concurso', 1)
             ->get();
 
         return response()->json($json);
