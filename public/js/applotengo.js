@@ -1,4 +1,4 @@
-import imprimir from "./imprimir.js";
+//import imprimir from "./imprimir.js";
 // Variables Globales
 const idUser = document.getElementById("idUser");
 const nitValue = document.getElementById("nit");
@@ -145,8 +145,8 @@ nitValue.addEventListener("blur", () => {
 agregarFactura.addEventListener("click", addFactura);
 
 displayCartonesHabilitados.addEventListener("click", function (e) {
-    if (e.path[0].alt === "Eliminar_Codigo") {
-        eliminarSerie(e.path[3].firstChild.childNodes[0].innerHTML);
+    if (e.composedPath()[0].alt === "Eliminar_Codigo") {
+        eliminarSerie(e.composedPath()[3].firstChild.childNodes[0].innerHTML);
         cartonesFaltantes.innerText = cartonesAdescontar += 1;
     }
 });
@@ -156,11 +156,12 @@ displayFacturasAcumuladas.addEventListener("click", function (e) {
         const rc = confirm("¿Seguro que desea Eliminar?");
 
         if (rc) {
-            eliminarFactura(e.path[3].firstChild.childNodes[0].innerHTML);
+            eliminarFactura(e.composedPath()[3].firstChild.childNodes[0].innerHTML);
+            
         }
     }
     if (e.target.alt === "Editar") {
-        editarFactura(e.path[3].firstChild.childNodes[0].innerHTML);
+        editarFactura(e.composedPath()[3].firstChild.childNodes[0].innerHTML);
     }
 });
 
