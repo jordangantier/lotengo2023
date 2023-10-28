@@ -1,4 +1,4 @@
-//import imprimir from "./imprimir.js";
+import imprimir from "./imprimir.js";
 // Variables Globales
 const idUser = document.getElementById("idUser");
 const nitValue = document.getElementById("nit");
@@ -32,7 +32,6 @@ const email = document.getElementById("email");
 const btnImprimir = document.getElementById("btnImprimir");
 const print = document.getElementById("print");
 const nuevoRegistro = document.getElementById("nuevoRegistro");
-
 let idParticipante = "";
 let cartonesAdescontar = 0;
 let seriesHabilitadas = [];
@@ -51,6 +50,7 @@ btnImprimir.addEventListener("click", () => {
     fetch(`/api/datosimpresion/${nitValue.value}`)
         .then((response) => response.json())
         .then((data) => {
+            console.log(data.ci_nit);
             nuevoRegistro.style.pointerEvents = "auto";
             printDiv.innerHTML = `<table class="customTable">
 <thead>
@@ -62,33 +62,33 @@ btnImprimir.addEventListener("click", () => {
 <tbody>
 <tr>
 <td><strong>CLIENTE</strong></td>
-<td>${data[0].nombre}</td>
+<td>${data.nombre}</td>
 <td><strong>ASIF</strong></td>
-<td>${data[0].usuario}</td>
+<td>${data.usuario}</td>
 </tr>
 <tr>
 <td><strong>TELEFONO</strong></td>
-<td>${data[0].telefono}</td>
+<td>${data.telefono}</td>
 <td><strong>CI o NIT</strong></td>
-<td>${data[0].ci_nit}</td>
+<td>${data.ci_nit}</td>
 </tr>
 <tr>
 <td><strong>CAMPAÑA</strong></td>
 <td>Lotengo!</td>
 <td><strong>E-MAIL</strong></td>
-<td>${data[0].email}</td>
+<td>${data.email}</td>
 </tr>
 <tr>
 <td><strong>MONTO TOTAL FACTURAS</strong></td>
-<td>Bs.- ${data[0].monto_acumulado}</td>
+<td>Bs.- ${data.monto_acumulado}</td>
 <td><strong>CANT. CARTONES</strong></td>
-<td>${JSON.parse(data[0].habilitados).length}</td>
+<td>${JSON.parse(data.habilitados).length}</td>
 </tr>
 <tr>
 <td><strong>Nº DE REGISTRO</strong></td>
-<td>${data[0].id_transaccion}</td>
+<td>${data.id_transaccion}</td>
 <td><strong>CARTONES HABILITADOS</strong></td>
-<td>${JSON.parse(data[0].habilitados)
+<td>${JSON.parse(data.habilitados)
                     .map((value) => {
                         return value;
                     })
@@ -96,7 +96,7 @@ btnImprimir.addEventListener("click", () => {
 </tr>
 <tr style="height: 100px;">
 <td><strong>FECHA</strong></td>
-<td>${data[0].fecha}</td>
+<td>${data.fecha}</td>
 <td><strong>FIRMA CLIENTE</strong></td>
 <td></td>
 </tr>
@@ -157,7 +157,7 @@ displayFacturasAcumuladas.addEventListener("click", function (e) {
 
         if (rc) {
             eliminarFactura(e.composedPath()[3].firstChild.childNodes[0].innerHTML);
-            
+
         }
     }
     if (e.target.alt === "Editar") {
@@ -482,8 +482,7 @@ function calcularEdad(fecha) {
     return edad;
 }
 
-// funciones para navecgacion entre sections
-
+// funciones para navegación entre sections.
 function goToSection(section, btnSection) {
     const sections = document.querySelectorAll("section");
     sections.forEach((element) => {
@@ -492,7 +491,7 @@ function goToSection(section, btnSection) {
     document.getElementById(section).style.display = "block";
     //document.getElementById(btnSection).classList.add('bg-blue-500', 'text-stone-50');
 }
-// un aviso qeu dure 3 segundos
+// un aviso que dura 3 segundos.
 function aviso(registro = false) {
     if (registro) {
         avisoRegistro.innerHTML = `<div class="bg-green-500 text-stone-50 px-6 py-3 transition ease-in-out duration-250"><p>¡Registro exitoso!</p></div>`;

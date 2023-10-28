@@ -10,7 +10,6 @@
 </head>
 
 <body>
-    @foreach($toPrint as $prints)
     <table class="customTable">
         <thead>
             <tr>
@@ -21,43 +20,42 @@
         <tbody>
             <tr>
                 <td><strong>CLIENTE</strong></td>
-                <td>{{$prints->nombre}}</td>
+                <td>{{$toPrint->nombre}}</td>
                 <td><strong>ASIF</strong></td>
-                <td>{{$prints->usuario}}</td>
+                <td>{{$toPrint->usuario}}</td>
             </tr>
             <tr>
                 <td><strong>TELEFONO</strong></td>
-                <td>{{$prints->telefono}}</td>
+                <td>{{$toPrint->telefono}}</td>
                 <td><strong>CI o NIT</strong></td>
-                <td>{{$prints->ci_nit}}</td>
+                <td>{{$toPrint->ci_nit}}</td>
             </tr>
             <tr>
                 <td><strong>CAMPAÑA</strong></td>
                 <td>Lotengo!</td>
                 <td><strong>E-MAIL</strong></td>
-                <td>{{$prints->email}}</td>
+                <td>{{$toPrint->email}}</td>
             </tr>
             <tr>
                 <td><strong>MONTO TOTAL FACTURAS</strong></td>
-                <td>Bs.- {{$prints->monto_acumulado}}</td>
+                <td>Bs.- {{$toPrint->monto_acumulado}}</td>
                 <td><strong>CANT. CARTONES</strong></td>
-                <td>{{$prints->qty_boletos}}</td>
+                <td>{{$toPrint->qty_boletos}}</td>
             </tr>
             <tr>
                 <td><strong>Nº DE REGISTRO</strong></td>
-                <td>{{$prints->id_transaccion}}</td>
+                <td>{{$toPrint->id_transaccion}}</td>
                 <td><strong>CARTONES HABILITADOS</strong></td>
-                <td>{{$prints->habilitados}}</td>
+                <td>{{$toPrint->habilitados}}</td>
             </tr>
             <tr style="height: 100px;">
                 <td><strong>FECHA</strong></td>
-                <td>{{$prints->fecha}}</td>
+                <td>{{$toPrint->fecha}}</td>
                 <td><strong>FIRMA CLIENTE</strong></td>
                 <td></td>
             </tr>
         </tbody>
     </table>
-    @endforeach
 </body>
 
 </html>

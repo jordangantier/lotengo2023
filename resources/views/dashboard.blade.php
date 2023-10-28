@@ -18,7 +18,7 @@
         @include('components.steps')
         <main class="mt-8">
             <form action="#">
-                <section class="hidden target:flex flex-col items-center px-6 py-3" id="pasoUno">
+                <section id="pasoUno" class="hidden target:flex flex-col items-center px-6 py-3">
                     <div class="flex flex-col gap-12">
                         <div class="grid grid-cols-1 grid-rows-2 sm:grid-cols-2 sm:grid-rows-1 divide-y sm:divide-y-0 sm:divide-x divide-stone-400">
                             <div class="pb-4 sm:pb-0 sm:pr-4">
@@ -285,7 +285,7 @@
                     <div id="mensajeFinal" class="max-w-md text-center">
                         <p></p>
                     </div>
-                    <div>
+                    <div class="flex pt-5 justify-center cursor-pointer">
                         <span id="btnImprimir"><img src="/img/print.svg" alt="Imprimir" width="50" style="margin: 30px auto;"></span>
                     </div>
                     <div>
@@ -301,6 +301,7 @@
     </div>
     <div id="print" hidden style="padding: 262px 13px 71px 313px; width: 595px; height: 396px"></div>
 </body>
+
 <style>
     /* body {
     font-family: 'Poppins', sans-serif;

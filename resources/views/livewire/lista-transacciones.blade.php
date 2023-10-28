@@ -88,7 +88,7 @@
                                     <p class="text-gray-900 text-center">{{ $transaction->usuario }}</p>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 text-sm">
-                                    <a href="imprimir/{{ $transaction->id_transaccion }}" target="new"><img src="{{asset ('img/print.svg')}}" alt="Lotengo" width="28" title="Ver transacción {{ $transaction->id_transaccion }}" /></a>
+                                    <a href="imprimir/{{ $transaction->id_transaccion }}" target="new"><img src="{{asset ('img/print.svg')}}" alt="Lotengo" width="28" title="Imprimir transacción {{ $transaction->id_transaccion }}" /></a>
                                 </td>
                             </tr>
                             @endforeach

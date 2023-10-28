@@ -24,8 +24,7 @@ class DatosImpresionController extends Controller
             ->join('users', 'users.id', '=', 'transaccions.id_user')
             ->where('ci_nit', $id)
             ->orderBy('id_transaccion', 'DESC')
-            ->limit(1)
-            ->get();
+            ->first();
 
         return $toPrint;
     }
@@ -37,8 +36,7 @@ class DatosImpresionController extends Controller
             ->join('users', 'users.id', '=', 'transaccions.id_user')
             ->where('transaccions.id', $id)
             ->orderBy('id_transaccion', 'DESC')
-            ->limit(1)
-            ->get();
+            ->first();
 
         return view('imprimir', compact('toPrint'));
     }

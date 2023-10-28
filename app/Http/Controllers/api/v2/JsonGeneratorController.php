@@ -14,7 +14,7 @@ class JsonGeneratorController extends Controller
             ->join('transaccions', 'transaccions.id', '=', 'boletos.id_transaccion')
             ->join('participantes', 'participantes.id', '=', 'transaccions.id_participante')
             ->where('boletos.habilitado', 0)
-            ->where('concurso', 1)
+            ->where('concurso', 2)
             ->get();
 
         return response()->json($json);
