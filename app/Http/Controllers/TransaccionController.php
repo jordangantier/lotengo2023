@@ -3,13 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Carbon\Carbon;
-
 use App\Models\Transaccion;
-
 use App\Models\Participante;
-
 use App\Models\Boleto;
 
 class TransaccionController extends Controller

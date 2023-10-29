@@ -3,9 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-
 use Illuminate\Support\Carbon;
-
 use App\Models\Transaccion;
 
 class ListaTransacciones extends Component
