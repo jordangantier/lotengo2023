@@ -15,8 +15,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/participantes', [ParticipanteController::class, 'index']);
 
-Route::get('/datosimpresion', [DatosImpresionController::class, 'index']);
-Route::get('/datosimpresion/{id}', [DatosImpresionController::class, 'show']);
+Route::apiResource('/datosimpresion', DatosImpresionController::class)
+    ->only(['index', 'show']);
+
+/* Route::get('/datosimpresion', [DatosImpresionController::class, 'index']);
+Route::get('/datosimpresion/{id}', [DatosImpresionController::class, 'show']); */
 
 Route::get('/habilitados', [BoletoController::class, 'index']);
 
