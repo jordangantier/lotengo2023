@@ -13,6 +13,7 @@ class Boleto extends Model
         'habilitado',
         'concurso',
         'serie',
+        'is_used',
         'hasher',
         'hasher2',
         'hash',

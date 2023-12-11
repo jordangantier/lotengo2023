@@ -60,7 +60,10 @@ class getRuedasController extends Controller
             ->where('id', $item)
             ->where('is_used', 0)
             ->get();
-            $queryResult = array_merge($queryResult, array($query[0]['id']));
+
+            if($query != '[]'){
+                $queryResult = array_merge($queryResult, array($query[0]['id']));
+            }
             
         }
         return json_encode($queryResult);
@@ -75,7 +78,27 @@ class getRuedasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rueda = Boleto::find($id);
+
+        if($rueda){
+            $rueda->is_used = 1;
+
+            if($rueda->save()){
+                return response()->json([
+                    'Message: ' => 'Cartón canjeado correctamente.',
+                    'Product: ' => $rueda
+                ], 200);
+
+            } else {
+                return response([
+                    'Message: ' => 'No puedo actualizar el cartón.',
+                ], 500);
+            }
+        } else {
+            return response([
+                'Message: ' => 'No puedo encontrar el cartón.',
+            ], 500);
+        }
     }
 
     /**

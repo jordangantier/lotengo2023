@@ -35,3 +35,5 @@ Route::get('/hash/{hash}', [BuscaBoletoController::class, 'hash']);
 Route::get('/jsongenerator', [JsonGeneratorController::class, 'index']);
 
 Route::get('/getruedas/{id}', [GetRuedasController::class, 'show']);
+
+Route::put('/tacharuedas/{id}/update', [GetRuedasController::class, 'update']);
