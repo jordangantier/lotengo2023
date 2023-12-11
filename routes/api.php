@@ -2,10 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ParticipanteController;
 use App\Http\Controllers\BoletoController;
 use App\Http\Controllers\TransaccionController;
+use App\Http\Controllers\ParticipanteController;
 use App\Http\Controllers\DatosImpresionController;
+use App\Http\Controllers\api\v2\GetRuedasController;
 use App\Http\Controllers\api\v2\BuscaBoletoController;
 use App\Http\Controllers\api\v2\JsonGeneratorController;
 
@@ -32,3 +33,5 @@ Route::put('/buscaboletos/{sorteo}/{juego}/{numero}/update', [BuscaBoletoControl
 Route::get('/hash/{hash}', [BuscaBoletoController::class, 'hash']);
 
 Route::get('/jsongenerator', [JsonGeneratorController::class, 'index']);
+
+Route::get('/getruedas/{id}', [GetRuedasController::class, 'show']);
