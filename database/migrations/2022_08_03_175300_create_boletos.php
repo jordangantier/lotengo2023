@@ -23,6 +23,8 @@ class CreateBoletos extends Migration
                 ->constrained('transaccions');
             $table->boolean('habilitado')
                 ->default(0);
+            $table->boolean('is_used')
+                ->default(0);
             $table->tinyInteger('concurso');
             $table->string('serie', strlen(env('QTY_BOLETOS')));
             $table->string('hasher', 100);
